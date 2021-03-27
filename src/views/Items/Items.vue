@@ -62,11 +62,7 @@
       </tbody>
     </table>
     <ul class="pagination">
-      <li class="active"><a>1</a></li>
-      <li class="waves-effect"><a>2</a></li>
-      <li class="waves-effect"><a>3</a></li>
-      <li class="waves-effect"><a>4</a></li>
-      <li class="waves-effect"><a>5</a></li>
+      <li class="waves-effect" v-for="i in totalPages" :key="i" :class="{ active: i === page }" @click="changeOrders(i)"><a>{{ i }}</a></li>
     </ul>
   </div>
 </template>
@@ -92,7 +88,10 @@ export default {
         rarity: '',
         type: '',
         power: ''
-      }
+      },
+      page: 1,
+      totalCount: 0,
+      totalPages: 0
     }
   },
   created () {
@@ -108,14 +107,20 @@ export default {
   },
   methods: {
     getItems () {
-      fetch('https://poxey.herokuapp.com/api/v1/items/')
+      fetch(`https://poxey.herokuapp.com/api/v1/items?page=${this.page}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.status) {
             this.items = data.items
+            this.totalCount = data.totalCount
+            this.totalPages = data.totalPages
           }
         })
         .catch((err) => console.log(err))
+    },
+    changeOrders (page) {
+      this.page = page
+      this.getItems()
     },
     addItem () {
       const requestBody = JSON.stringify({
@@ -141,7 +146,7 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           if (data.status) {
-            this.items.push(data.item)
+            this.getItems()
             this.modalOpen = false
           }
         })

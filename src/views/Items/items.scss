@@ -1,0 +1,20 @@
+.items {
+    padding: 0 20px;
+
+    & .pagination {
+        margin-top: 10px;
+    }
+}
+
+#add-item {
+    z-index: 20;
+}
+
+.modal-content {
+    & .close {
+        top: 10px;
+        right: 10px;
+        position: absolute;
+        cursor: pointer;
+    }
+}

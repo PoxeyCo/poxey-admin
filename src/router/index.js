@@ -4,6 +4,7 @@ import cookie from 'vue-cookies'
 
 import Home from '@/views/Home/Home.vue'
 import Items from '@/views/Items/Items.vue'
+import Levels from '@/views/Levels/Levels.vue'
 import Auth from '@/views/Auth/Auth.vue'
 
 Vue.use(VueRouter)
@@ -29,6 +30,14 @@ const routes = [
     path: '/items',
     name: 'Items',
     component: Items,
+    meta: {
+      auth: 1
+    }
+  },
+  {
+    path: '/levels',
+    name: 'Levels',
+    component: Levels,
     meta: {
       auth: 1
     }

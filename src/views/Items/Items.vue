@@ -62,7 +62,7 @@
       </tbody>
     </table>
     <ul class="pagination">
-      <li class="waves-effect" v-for="i in totalPages" :key="i" :class="{ active: i === page }" @click="changeOrders(i)"><a>{{ i }}</a></li>
+      <li class="waves-effect" v-for="i in totalPages" :key="i" :class="{ active: i === page }" @click="changePage(i)"><a>{{ i }}</a></li>
     </ul>
   </div>
 </template>
@@ -90,6 +90,7 @@ export default {
         power: ''
       },
       page: 1,
+      limit: 10,
       totalCount: 0,
       totalPages: 0
     }
@@ -107,7 +108,7 @@ export default {
   },
   methods: {
     getItems () {
-      fetch(`https://poxey.herokuapp.com/api/v1/items?page=${this.page}`)
+      fetch(`https://poxey.herokuapp.com/api/v1/items?page=${this.page}&limit=${this.limit}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.status) {
@@ -118,7 +119,7 @@ export default {
         })
         .catch((err) => console.log(err))
     },
-    changeOrders (page) {
+    changePage (page) {
       this.page = page
       this.getItems()
     },
@@ -151,8 +152,6 @@ export default {
           }
         })
         .catch((err) => console.log(err))
-
-      console.log(requestBody)
     }
   }
 }

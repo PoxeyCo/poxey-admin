@@ -3,7 +3,7 @@
     <div id="add-item" class="modal" style="display: block;" v-show="modalOpen">
       <div class="modal-content">
         <i class="material-icons close" @click="modalOpen = false">close</i>
-        <h4>Add Item</h4>
+        <h4>Add Level</h4>
         <div class="row">
           <div class="input-field col s12" style="margin-top: 0rem; margin-bottom: 0rem;">
             <input id="number" type="text" class="validate" v-model="add.number">
@@ -78,7 +78,7 @@ export default {
         dropItems: ''
       },
       page: 1,
-      limit: 6,
+      limit: 7,
       totalCount: 0,
       totalPages: 0
     }

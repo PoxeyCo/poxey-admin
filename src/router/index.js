@@ -6,6 +6,7 @@ import Home from '@/views/Home/Home.vue'
 import Items from '@/views/Items/Items.vue'
 import Pokemons from '@/views/Pokemons/Pokemons.vue'
 import Levels from '@/views/Levels/Levels.vue'
+import Users from '@/views/Users/Users.vue'
 import Auth from '@/views/Auth/Auth.vue'
 
 Vue.use(VueRouter)
@@ -39,6 +40,11 @@ const routes = [
     path: '/pokemons',
     name: 'Pokemons',
     component: Pokemons,
+    path: '/users',
+  },
+  {
+    name: 'Users',
+    component: Users,
     meta: {
       auth: 1
     }

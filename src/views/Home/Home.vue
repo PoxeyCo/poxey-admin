@@ -114,6 +114,8 @@
 import './home.scss'
 
 export default {
-  name: 'Home'
+  name: 'Home',
+  created () {
+  }
 }
 </script>

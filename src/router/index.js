@@ -4,6 +4,7 @@ import cookie from 'vue-cookies'
 
 import Home from '@/views/Home/Home.vue'
 import Items from '@/views/Items/Items.vue'
+import Pokemons from '@/views/Pokemons/Pokemons.vue'
 import Levels from '@/views/Levels/Levels.vue'
 import Auth from '@/views/Auth/Auth.vue'
 
@@ -30,6 +31,14 @@ const routes = [
     path: '/items',
     name: 'Items',
     component: Items,
+    meta: {
+      auth: 1
+    }
+  },
+  {
+    path: '/pokemons',
+    name: 'Pokemons',
+    component: Pokemons,
     meta: {
       auth: 1
     }

@@ -40,9 +40,12 @@ const routes = [
     path: '/pokemons',
     name: 'Pokemons',
     component: Pokemons,
-    path: '/users',
+    meta: {
+      auth: 1
+    }
   },
   {
+    path: '/users',
     name: 'Users',
     component: Users,
     meta: {

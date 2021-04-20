@@ -7,7 +7,7 @@
           <div class="card deep-purple accent-1">
             <div class="card-content black-text">
               <span class="card-title">Items Count</span>
-              <p>120</p>
+              <p>{{ counts.items }}</p>
             </div>
           </div>
         </div>
@@ -15,7 +15,7 @@
           <div class="card deep-purple accent-1">
             <div class="card-content black-text">
               <span class="card-title">Levels Count</span>
-              <p>120</p>
+              <p>{{ counts.levels }}</p>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
           <div class="card deep-purple accent-1">
             <div class="card-content black-text">
               <span class="card-title">Users Count</span>
-              <p>120</p>
+              <p>{{ counts.users }}</p>
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@
           <div class="card deep-purple accent-1">
             <div class="card-content black-text">
               <span class="card-title">Pokemons Count</span>
-              <p>120</p>
+              <p>{{ counts.pokemons }}</p>
             </div>
           </div>
         </div>
@@ -116,6 +116,30 @@ import './home.scss'
 export default {
   name: 'Home',
   created () {
+    this.getCounts()
+  },
+  data () {
+    return {
+      counts: {
+        items: 0,
+        pokemons: 0,
+        users: 0,
+        levels: 0
+      }
+    }
+  },
+  methods: {
+    getCounts () {
+      fetch('https://poxey.herokuapp.com/api/v1/stats/counts')
+        .then((res) => res.json())
+        .then(({ counts }) => {
+          this.counts.items = counts.items
+          this.counts.pokemons = counts.pokemons
+          this.counts.users = counts.users
+          this.counts.levels = counts.levels
+        })
+        .catch((err) => console.log(err))
+    }
   }
 }
 </script>
